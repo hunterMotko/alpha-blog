@@ -1,24 +1,35 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark" id="nav">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">ALPHA</a>
+    <%= link_to "ALPHA", root_path, class: "navbar-brand", id: "logo" %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item mt-3">
+          <%= link_to 'About Page', about_path, class: "nav-link" %>
         </li>
-        <li class="nav-item">
-          <%= link_to 'About Page', about_path %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Articles Listing', articles_path %>
+        <li class="nav-item dropdown mt-1" id="dropdown">
+          <button class="nav-link dropdown-toggle btn" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Articles
+          </button>
+          <ul class="dropdown-menu bg-black" aria-labelledby="offcanvasNavbarDropdown">
+            <li>
+              <%= link_to 'Create New Article', new_article_path, class: "dropdown-item secondary-text" %>
+            </li>
+            <li>
+              <%= link_to 'View Articles', articles_path, class: "dropdown-item secondary-text" %>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item secondary-text" href="#">Something else here</a></li>
+          </ul>
         </li>
       </ul>
-      <span class="navbar-text">
-        Navbar text with an inline element
-      </span>
+      
+      <a href="#" class="btn btn-darkgreen mx-1">Sign Up</a>
+      <a href="#" class="btn btn-darkgreen">Sign In</a>
     </div>
   </div>
 </nav>

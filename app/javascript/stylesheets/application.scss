@@ -1,10 +1,56 @@
 @import 'bootstrap';
 
+
+// darkgreen #003B00
+// medgreen #008F11
+//lightgreen #00FF41
+body {
+  background-color: #8c959a;
+}
 #home {
   margin-top: 2em;
 }
 .jumbotron {
   height: 30em;
-  background-image: url("../../assets/images/skull-cave.jpg");
+  background-image: url("../../assets/images/matrix.jpg");
   background-size: cover;
+}
+.head-text {
+  color: #008F11;
+}
+.secondary-text {
+  color: #00FF41;
+  font-family: cursive;
+}
+
+#logo {
+  color: #008F11;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 2.5rem;
+}
+#nav {
+  background-color: #000;
+}
+.navbar {
+  font-family: cursive;
+}
+.nav-link {
+  color: #00FF41 !important;
+  font-family: cursive;
+  font-size: 1.5rem;
+}
+.btn-darkgreen {
+  background-color: #003B00;
+  color: #00FF41 !important;
+}
+.btn-lightgreen {
+  background-color: #00FF41;
+  color: #003B00 !important;
+}
+.btn-outline-green {
+  background-color: #000;
+  border: 2px solid #00FF41;
+}
+#sticky-footer {
+  flex-shrink: none;
 }

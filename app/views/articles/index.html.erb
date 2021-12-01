@@ -1,20 +1,32 @@
-<h1>Articles Listing Page</h1>
 
-<table>
-  <thead> 
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @articles.each do |article| %>
-      <tr>
-        <td><%= article.title %></td>
-        <td><%= article.description %></td>
-        <td><%= article.created_at %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container bg-black rounded m-5">
+  <h1 class="display-3 text-center secondary-text">Articles Listing</h1>
+</div>
+<div class="container mb-5">
+  <% @articles.each do |article| %>
+  <div class="row justify-content-md-center">
+    <div class="col-8">
+      <div class="card text-center m-4 shadow rounded">
+        <div class="card-header bg-black font-italic secondary-text">
+          BY: Hunter Motko
+        </div>
+        <div class="card-body">
+          <h5 class="card-title"><%= article.title %></h5>
+          <p class="card-text"><%= truncate(article.description, length: 100) %></p>
+          <%= link_to 'View', article_path(article), class: "btn btn-dark text-white" %>
+          <%= link_to 'Edit', edit_article_path(article), class: "btn btn-lightgreen" %>
+          <%= link_to 'Delete', article_path(article), class: "btn btn-darkgreen", method: :delete, data: {confirm: "Are you sure?"} %>
+        </div>
+        <div class="card-footer bg-black secondary-text">
+          <%= article.created_at %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  <div class="text-center mb-5">
+    <%= link_to 'Create New Article', new_article_path, class: "text-white btn btn-darkgreen"%>
+  </div>
+</div>
+
+
