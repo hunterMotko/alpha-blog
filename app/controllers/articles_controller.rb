@@ -20,6 +20,7 @@ class ArticlesController < ApplicationController
     # render plain: params[:article]
     # ! cant use params[:article] to pass in info because it has to be white listed
     @article = Article.new(params.require(:article).permit(:title, :description))
+    @article.user = User.first
     # render plain: @article.inspect
     # @article.save
     # *wouldnt work if length settings set werent met 
