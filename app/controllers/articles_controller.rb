@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: %i[show edit update destroy]
 
   def show
+    @article = Article.find(params[:id])
   end
 
   def index
@@ -13,12 +13,13 @@ class ArticlesController < ApplicationController
   end
 
   def edit
+    @article = Article.find(params[:id])
   end
 
   def create 
     # render plain: params[:article]
     # ! cant use params[:article] to pass in info because it has to be white listed
-    @article = Article.new(artcile_params)
+    @article = Article.new(params.require(:article).permit(:title, :description))
     # render plain: @article.inspect
     # @article.save
     # *wouldnt work if length settings set werent met 
@@ -34,26 +35,12 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    if @article.update(artcile_params)
+    @article = Article.find(params[:id])
+    if @article.update(params.require(:article).permit(:title, :description))
       flash[:notice] = 'Article was updated!'
       redirect_to @article
     else
       render 'edit'
     end
-  end
-
-  def destroy
-    @article.destroy
-    redirect_to articles_path
-  end
-
-  private
-
-  def set_article
-    @article = Article.find(params[:id])
-  end
-
-  def artcile_params
-    params.require(:article).permit(:title, :description)
   end
 end
