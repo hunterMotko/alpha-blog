@@ -18,5 +18,11 @@
       </div>
     </div>
   </div>
+  <div class="flickr_pagination">
+    <%= will_paginate @articles , :container => false %>
+  </div>
   <%= render 'articles/article' %>
+  <div class="flickr_pagination">
+    <%= will_paginate @articles, :container => false %>
+  </div>
 </div>
