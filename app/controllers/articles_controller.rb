@@ -42,6 +42,11 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def destroy
+    @article.destroy
+    redirect_to articles_path
+  end
+
   private
 
   def set_article
