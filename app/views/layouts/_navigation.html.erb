@@ -31,10 +31,13 @@
         </li>
       </ul>
       
-      
+    <% if logged_in? %>
+    <%= link_to current_user.username, user_path(current_user), class: "btn btn-darkgreen mx-2" %>
+      <%= link_to 'Log Out', logout_path, class: "btn btn-darkgreen mx-2", method: :delete %>
+    <% else %>
       <%= link_to 'Sign Up', signup_path, class: "btn btn-darkgreen mx-2" %>
-    
-      <a href="#" class="btn btn-darkgreen">Sign In</a>
+      <%= link_to 'Sign In', login_path, class: "btn btn-darkgreen mx-2" %>
+    <% end %>
     </div>
   </div>
 </nav>
