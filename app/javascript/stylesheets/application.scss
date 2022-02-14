@@ -7,19 +7,19 @@
 body {
   background-color: #8c959a;
 }
+
 #home {
-  margin-top: 2em;
-}
-.jumbotron {
-  height: 30em;
+  height: 40em;
   background-image: url("../../assets/images/matrix.jpg");
   background-size: cover;
+  margin: 2em auto;
+  text-align: center;
 }
 .head-text {
   color: #008F11;
 }
-.secondary-text {
-  color: #00FF41;
+.green-text {
+  color: #00FF41 !important;
   font-family: cursive;
 }
 
@@ -61,16 +61,16 @@ body {
   text-align: center;
   padding: 0.3em;
   margin: 1em;
-  cursor: default; 
+  cursor: default;
 }
 .flickr_pagination a, .flickr_pagination span, .flickr_pagination em {
-  padding: 0.2em 0.5em; 
+  padding: 0.2em 0.5em;
 }
 .flickr_pagination .disabled {
   border: 1px solid #000;
   background-color: #003B00;
   color: #00FF41 !important;
-  text-decoration: none; 
+  text-decoration: none;
 }
 .flickr_pagination .current {
   font-style: normal;
@@ -83,24 +83,24 @@ body {
   border: 1px solid #000;
   background-color: #003B00;
   color: #00FF41 !important;
-  text-decoration: none; 
+  text-decoration: none;
 }
 .flickr_pagination a:hover, .flickr_pagination a:focus {
   border-color: #003b00;
   background-color: #00FF41;
   color: #003B00 !important;
-  text-decoration: none; 
+  text-decoration: none;
 }
 .flickr_pagination .page_info {
   color: #aaaaaa;
-  padding-top: 0.8em; 
+  padding-top: 0.8em;
 }
 .flickr_pagination .previous_page, .flickr_pagination .next_page {
-  border-width: 2px; 
+  border-width: 2px;
 }
 .flickr_pagination .previous_page {
-  margin-right: 1em; 
+  margin-right: 1em;
 }
 .flickr_pagination .next_page {
-  margin-left: 1em; 
+  margin-left: 1em;
 }

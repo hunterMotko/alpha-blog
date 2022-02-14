@@ -10,24 +10,24 @@
   <div class="row justify-content-center">
     <div class="col-8 mt-4">
       <div class="card text-center shadow mb-5 bg-white rounded">
-        <div class="card-header font-italic"> 
+        <div class="card-header font-italic">
           by <%= @article.user.username if @article.user %>
-          <%= link_to gravatar_for(@article.user), user_path(@article.user) %> 
+          <%= link_to gravatar_for(@article.user), user_path(@article.user) %>
           <%# <% if @article.categories.any? %>
-            <%# <div class="mt-2"><%= render @article.categories</div> %> 
+            <%# <div class="mt-2"><%= render @article.categories</div> %>
           <%# <% end %>
         </div>
         <div class="card-body">
           <div class="card-text text-left">
             <%= simple_format(@article.description) %>
           </div>
-          <%# <% if logged_in? && (@article.user == current_user || current_user.admin?) %> 
-          <%= link_to "Edit", edit_article_path(@article), class: "btn btn-darkgreen" %>
-          <%= link_to "Delete", article_path(@article), class: "btn btn-lightgreen", method: :delete, data: {confirm: "Are you sure?"} %>
-          <%# <% end %> 
+          <% if logged_in? && (@article.user == current_user || current_user.admin?) %>
+            <%= link_to "Edit", edit_article_path(@article), class: "btn btn-darkgreen" %>
+            <%= link_to "Delete", article_path(@article), class: "btn btn-lightgreen", method: :delete, data: {confirm: "Are you sure?"} %>
+          <% end %>
         </div>
         <div class="card-footer bg-black secondary-text">
-          <small>Created <%= time_ago_in_words(@article.created_at) %> ago, 
+          <small>Created <%= time_ago_in_words(@article.created_at) %> ago,
           edited <%= time_ago_in_words(@article.updated_at) %> ago</small>
         </div>
       </div>

@@ -18,26 +18,60 @@
           </button>
           <ul class="dropdown-menu bg-black" aria-labelledby="offcanvasNavbarDropdown">
             <li>
-              <%= link_to 'Create New Article', new_article_path, class: "dropdown-item secondary-text" %>
+              <% if logged_in? %>
+                <%= link_to 'Create New Article', new_article_path, class: "dropdown-item green-text" %>
+              <% end %>
             </li>
             <li>
-              <%= link_to 'View Articles', articles_path, class: "dropdown-item secondary-text" %>
+              <%= link_to 'View Articles', articles_path, class: "dropdown-item green-text" %>
             </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item secondary-text" href="#">Something else here</a></li>
           </ul>
         </li>
+        <li class="nav-item dropdown mt-1" id="dropdown">
+          <button class="nav-link dropdown-toggle btn" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Categories
+          </button>
+          <ul class="dropdown-menu bg-black" aria-labelledby="offcanvasNavbarDropdown">
+            <li>
+              <% if logged_in? && current_user.admin? %>
+                <%= link_to 'Create New Category', new_category_path, class: "dropdown-item green-text" %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to 'View Categories', categories_path, class: "dropdown-item green-text" %>
+            </li>
+          </ul>
+        </li>
+
+        <% if logged_in? %>
+          <li class="nav-item dropdown mt-1" id="dropdown">
+            <button class="nav-link dropdown-toggle btn" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             <%= '(Admin)' if current_user.admin? %> <%= current_user.username %>
+            </button>
+            <ul class="dropdown-menu bg-black" aria-labelledby="offcanvasNavbarDropdown">
+              <li>
+                <%= link_to 'View Profile', user_path(current_user), class: "dropdown-item green-text" %>
+              </li>
+              <li>
+                <%= link_to 'Edit Profile', edit_user_path(current_user), class: "dropdown-item green-text" %>
+              </li>
+              <li>
+                <%= link_to 'Delete Profile', user_path(current_user), class: "dropdown-item text-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <%= link_to 'Log Out', logout_path, class: "btn btn-darkgreen mx-2", method: :delete %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to 'Sign Up', signup_path, class: "btn btn-darkgreen mx-2" %>
+          </li>
+          <li>
+            <%= link_to 'Sign In', login_path, class: "btn btn-darkgreen mx-2" %>
+          </li>
+        <% end %>
       </ul>
-      
-    <% if logged_in? %>
-    <%= link_to current_user.username, user_path(current_user), class: "btn btn-darkgreen mx-2" %>
-      <%= link_to 'Log Out', logout_path, class: "btn btn-darkgreen mx-2", method: :delete %>
-    <% else %>
-      <%= link_to 'Sign Up', signup_path, class: "btn btn-darkgreen mx-2" %>
-      <%= link_to 'Sign In', login_path, class: "btn btn-darkgreen mx-2" %>
-    <% end %>
     </div>
   </div>
 </nav>
