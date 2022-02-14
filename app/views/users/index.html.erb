@@ -1,14 +1,14 @@
  <div class="container m-5">
   <div class="row justify-content-center bg-black rounded  m-5">
     <div class="col">
-      <h1 class="display-3 text-center secondary-text">Alpha Bloggers</h1>
+      <h1 class="display-3 text-center green-text">Alpha Bloggers</h1>
     </div>
   </div>
     <% @users.each do |user| %>
       <div class="row justify-content-center">
         <div class="col-xs-12 col-sm-10 col-md-8">
           <div class="card text-center m-4 shadow rounded">
-            <div class="card-header bg-black font-italic secondary-text">
+            <div class="card-header bg-black font-italic green-text">
               <%= link_to user.username, user %>
             </div>
             <div class="card-body">
@@ -19,9 +19,16 @@
                 <%= pluralize(user.articles.count, 'article') %>
               </p>
               <%= link_to 'View Profile', user, class: "btn btn-darkgreen text-white" %>
-              <%= link_to 'Edit Profile', edit_user_path(user), class: "btn btn-lightgreen" %>
+              <% if logged_in? %>
+                <% if user == current_user %>
+                  <%= link_to 'Edit Profile', edit_user_path(user), class: "btn btn-lightgreen" %>
+                <% end %>
+                <% if current_user.admin? %>
+                  <%= link_to 'Delete User', user_path(user), class: 'btn btn-outline-danger', method: :delete, data: { confirm: 'Are you sure? This will also delete all articles.' } %>
+                <% end %>
+              <% end %>
             </div>
-            <div class="card-footer bg-black secondary-text">
+            <div class="card-footer bg-black green-text">
               Joined <%= time_ago_in_words(user.created_at) %>
             </div>
           </div>

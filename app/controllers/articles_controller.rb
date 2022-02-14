@@ -1,7 +1,9 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
-  def show
-  end
+  before_action :set_article, only: %i[show edit update destroy]
+  before_action :require_user, except: %i[show index]
+  before_action :require_same_user, only: %i[edit update destroy]
+
+  def show; end
 
   def index
     @articles = Article.paginate(page: params[:page], per_page: 5)
@@ -11,26 +13,18 @@ class ArticlesController < ApplicationController
     @article = Article.new
   end
 
-  def edit
-  end
+  def edit; end
 
-  def create 
-    # render plain: params[:article]
-    # ! cant use params[:article] to pass in info because it has to be white listed
+  def create
     @article = Article.new(article_params)
-    @article.user = User.first
-    # render plain: @article.inspect
-    # @article.save
-    # *wouldnt work if length settings set werent met 
-    # * should make an error on submit
-    # redirect_to @article
+    @article.user = current_user
+
     if @article.save
       flash[:notice] = 'Article was created!'
       redirect_to @article
     else
       render 'new'
     end
-
   end
 
   def update
@@ -55,5 +49,12 @@ class ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit(:title, :description, category_ids: [])
+  end
+
+  def require_same_user
+    return if current_user == @article.user || current_user.admin?
+
+    flash[:alert] = 'You can only edit or delete your own article'
+    redirect_to @article
   end
 end

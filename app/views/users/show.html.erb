@@ -1,7 +1,7 @@
 <div class="container m-5">
   <div class="row justify-content-center bg-black rounded m-5">
     <div class="col-10">
-      <h1 class="display-3 text-center secondary-text">
+      <h1 class="display-3 text-center green-text">
         <%= @user.username %>'s profile
       </h1>
     </div>
@@ -14,7 +14,9 @@
   <div class="row justify-content-center">
     <div class="col-10">
       <div class="text-center m-3">
-        <%= link_to "Edit your profile", edit_user_path(@user), class: 'btn btn-darkgreen' %>
+        <% if logged_in? && @user == current_user %>
+          <%= link_to "Edit your profile", edit_user_path(@user), class: 'btn btn-darkgreen' %>
+        <% end %>
       </div>
     </div>
   </div>
